@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassTable extends Migration
+class CreateClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,14 @@ class CreateClassTable extends Migration
     public function up()
     {
         Schema::create('classes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->string('name');
-            $table->integer('school_id');
-            $table->integer('users_id');
+            $table->unsignedInteger('school_id');
+            $table->unsignedInteger('users_id');
             $table->timestamps();
+
+            $table->foreign('school_id')->references('id')->on('school');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 

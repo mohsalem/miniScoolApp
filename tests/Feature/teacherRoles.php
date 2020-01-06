@@ -20,5 +20,17 @@ class teacherRoles extends TestCase
         $this->headers['Authorization'] = 'Bearer '.$token;
         $response = $this->get('/show');
         $response->assertStatus(200);
+
+
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' =>'Bearer '.$token,
+        ])->json('POST', '/show', ['name' => 'Sally']);
+
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'created' => true,
+            ]);
     }
 }

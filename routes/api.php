@@ -17,16 +17,23 @@ use Illuminate\Support\Facades\Auth;
 Route::post('login', 'UserController@login');
 
 Route::post('register', 'UserController@register');
+Route::group(['middleware' => ['auth:api','role:admin']], function()
+{
+    //admin's apis
+    Route::post('addSchool', 'adminController@add_school');
+    Route::post('addClass', 'adminController@add_class');
+});
 Route::group(['middleware' => ['auth:api','role:teacher']], function()
 {
 	//teacher's apis
-   Route::post('details', 'UserController@details');
-   Route::get('showClasses', 'teacherController@show_classes');
-   Route::post('showStudents', 'teacherController@show_students');
-   Route::post('evaluate', 'teacherController@evaluate_student');
+    Route::post('details', 'UserController@details');
+    Route::get('showClasses', 'teacherController@show_classes');
+    Route::get('showStudents', 'teacherController@show_students');
+    Route::get('class/{class}', 'teacherController@show_class_students');
+    Route::post('evaluate', 'teacherController@evaluate_student');
 
-   Route::post('addStudent', 'teacherController@add_student');
-   Route::post('deleteStudent', 'teacherController@del_student');
+    Route::post('addStudent', 'teacherController@add_student');
+    Route::post('deleteStudent', 'teacherController@del_student');
 
 
 });

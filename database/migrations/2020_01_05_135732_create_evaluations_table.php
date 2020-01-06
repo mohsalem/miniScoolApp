@@ -14,12 +14,15 @@ class CreateEvaluationsTable extends Migration
     public function up()
     {
         Schema::create('evaluations', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->unsignedInteger('evaluation');
             $table->unsignedInteger('students_id');
             $table->unsignedInteger('users_id');
             $table->dateTime('time_submitted');
             $table->timestamps();
+
+            $table->foreign('students_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
