@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
+use Symfony\Component\Process\Process;
 use Tests\TestCase;
 use App\User;
 
@@ -27,7 +28,7 @@ class teacherRoles extends TestCase
     protected function acting_as($role_type){
         if($role_type =='teacher')
         {
-            $id = 3;
+            $id = 2;
             $user = factory(User::class)->make(['id' => $id, 'role_type' => $role_type]);
             //dd($user);
         }
@@ -67,7 +68,7 @@ class teacherRoles extends TestCase
     public function Register_teacher()
     {
 
-        $data = factory(User::class)->make(['role_type' => 'teacher']);;;
+        $data = factory(User::class)->make(['role_type' => 'parent']);;;
 
         $data =[
             'name' => $data->name,
@@ -88,6 +89,12 @@ class teacherRoles extends TestCase
     /** @test */
     public function test_run()
     {
+//        $process = new Process(['php', 'artisan', 'migrate']);
+  //      $process->run();
+//
+        //$process = new Process(['php', 'artisan', 'passport:install']);
+      //  $process->run();
+
         $this->Register_teacher();
         $this->addSchool_as_admin();
         $this->addClass_as_admin();
