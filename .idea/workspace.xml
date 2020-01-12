@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b4fee36-c412-43a1-aaf6-a9a534abdac6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/parentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/parentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/adminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/adminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/teacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/teacherController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/classes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/classes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/school.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/school.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/students.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/students.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_26_134128_create_students_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_26_134454_create_school_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_26_134454_create_school_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_26_134545_create_class_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_26_134732_create_evaluations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_05_135732_create_evaluations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/userRoleMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/userRoleMiddleware.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/teacherRoles.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/teacherRoles.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -153,11 +144,20 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.teacherRoles">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="teacherRoles" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\teacherRoles" file="$PROJECT_DIR$/tests/Feature/teacherRoles.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.teacherRoles" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -183,7 +183,9 @@
       <updated>1577706837320</updated>
       <workItem from="1577706842564" duration="3083000" />
       <workItem from="1577782340751" duration="5370000" />
-      <workItem from="1578216497625" duration="31919000" />
+      <workItem from="1578216497625" duration="33001000" />
+      <workItem from="1578487194896" duration="24807000" />
+      <workItem from="1578579430844" duration="5650000" />
     </task>
     <servers />
   </component>
@@ -191,33 +193,45 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578314296442">
+    <state x="361" y="74" key="#Notifications" timestamp="1578580733259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1578314296442" />
+    <state x="361" y="74" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1578580733259" />
+    <state x="499" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578489637284">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="171" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1578489637284" />
+    <state x="465" y="69" width="620" height="685" key="#teacherRoles" timestamp="1578580710113">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="69" width="620" height="685" key="#teacherRoles/0.0.1536.824@0.0.1536.824" timestamp="1578580710113" />
     <state x="279" y="58" key="SettingsEditor" timestamp="1577783556305">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1577783556305" />
-    <state x="470" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1578216498154">
+    <state x="470" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1578579431017">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="470" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578216498154" />
+    <state x="470" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578579431017" />
     <state x="580" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578308913221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="580" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1578308913221" />
+    <state x="412" y="2" width="711" height="819" key="find.popup" timestamp="1578580634324">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="412" y="2" width="711" height="819" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1578580634324" />
     <state x="410" y="138" width="700" height="530" key="recent.locations.popup" timestamp="1577782614094">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="410" y="138" width="700" height="530" key="recent.locations.popup/0.0.1536.824@0.0.1536.824" timestamp="1577782614094" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1578313754422">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1578488553461">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1578313754422" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1578302412065">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1578488553461" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1578573624219">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578302412065" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1578573624219" />
   </component>
 </project>

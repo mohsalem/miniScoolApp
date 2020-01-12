@@ -16,7 +16,7 @@ class adminController extends Controller
         school::Create(['name' => request('name')]);
 
     }
-    public function add_class() //with associated parent
+    public function add_class()
     {
         request()->validate([
             'name' => 'required',

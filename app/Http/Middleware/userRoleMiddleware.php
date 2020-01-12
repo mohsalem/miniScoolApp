@@ -17,7 +17,7 @@ class userRoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        $role_type = User::where('id', Auth::id())->pluck('role_type')->first();
+        $role_type = Auth::user()->role_type;
         if( $role_type == $role)
         {
             return $next($request);

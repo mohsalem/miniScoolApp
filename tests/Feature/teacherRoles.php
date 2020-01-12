@@ -2,9 +2,18 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\userRoleMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\ClientRepository;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
+use App\User;
+
 
 class teacherRoles extends TestCase
 {
@@ -13,24 +22,95 @@ class teacherRoles extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
-    {
-        $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjY3MzgzMWM1YmZkODk0M2U3MTgxYzE4NzA3MDBiOTY1YmFiMDc4MzRlODk4YzM0MGQzMmFjYzMzNGQ3MGM0OTNjNGM5YTdmY2Q1MmQxNDUiLCJpYXQiOjE1Nzc3MTM3MTYsIm5iZiI6MTU3NzcxMzcxNiwiZXhwIjoxNjA5MzM2MTE2LCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.KKNLXlTIUNPg2SOtPouUmPMFTQysTD1bNbZSHt0DEKnF--OUs6Y1Vvo0KDtX9wqi7wfpdnG08ob43qHNWI2uovOQ7XzFVEWxz6oUli5rtA46KJxQSkXbShi1HLpXnxV3BxN3H5oQ-7ikyRedhzm1JxXwExrwkzkF1RwQMYbI-JTLG_MDcxRgVzjylR-GKkVtKYMvXbS-3L_yPMF6b-Ft0kC8JHLSojSBDN53t7uiIqYRk7uoC600ItlZ6IzTZDxtangJoaiWk3ow6qrp_NfmHyTvEOjINUWZbFF0TOKZc0UaQtKzra_r76JNUxjNmiXAHVqwk6anoIlBTMmWYxfAMj0x8wUcjpU9FYZdi-JLkYBhGR_bfU5qSMaheBd-sVpHIttxj8QXAGV9QVOFoe1s0cOpeeNC7bJemct_UbiUm4ai-0uLpZ3yzoIyszD1slov7VrggXiFUxdRVIQTs-nn3uwZ05cIhI9cDECkmJTu8_FfZ-vPwI_ghV0m3TqdgihHhue-fVf4RvqPDao6BMhwmjjQcaIdU9V406sI6Q9G1Xv4cophLG4bYVWW73FAeHPNVJx5K5RzdKbAlhsOSfPW1TqixWi0jxaRvpg_Vl_cf8BwXzeDm9rF1389KHSa3VwNNMSNotiWyNH0-wHnHR_6tUUi3hATRxCGpjjb5hmfMjM';
-        $this->headers['Accept'] = 'application/json';
-        $this->headers['Authorization'] = 'Bearer '.$token;
-        $response = $this->get('/show');
-        $response->assertStatus(200);
 
 
-        $response = $this->withHeaders([
-            'Accept' => 'application/json',
-            'Authorization' =>'Bearer '.$token,
-        ])->json('POST', '/show', ['name' => 'Sally']);
+    protected function acting_as($role_type){
+        if($role_type =='teacher')
+        {
+            $id = 3;
+            $user = factory(User::class)->make(['id' => $id, 'role_type' => $role_type]);
+            //dd($user);
+        }
+        else{
+            $user = factory(User::class)->make(['role_type' => $role_type]);
+        }
+        Passport::actingAs($user);
 
-        $response
-            ->assertStatus(201)
-            ->assertJson([
-                'created' => true,
-            ]);
     }
+
+
+    public function addSchool_as_admin()
+    {
+        $this->acting_as('admin');
+        $data = [
+            'name' => 'school 1',
+        ];
+        $request = $this->post('/api/addSchool' , $data);
+        //dd($request);
+        $this->assertEquals($request->getStatusCode(), 200);
+
+    }
+
+    public function addClass_as_admin()
+    {
+        $this->acting_as('admin');
+        $data = [
+            'name' => 'unit test class',
+            'school_id' => 1,
+            'teacher_id' => 2,
+        ];
+        $request = $this->post('/api/addClass' , $data);
+        //dd($request);
+        $this->assertEquals($request->getStatusCode(), 200);
+
+    }
+    public function Register_teacher()
+    {
+
+        $data = factory(User::class)->make(['role_type' => 'teacher']);;;
+
+        $data =[
+            'name' => $data->name,
+            'email' => $data->email,
+            'password' => '123456',
+            'c_password' => '123456',
+            'role_type' => $data->role_type,
+            ];
+        //dd($data);
+
+        $request = $this->call('post','/api/register' , $data);
+        //dd($request);
+        $this->assertEquals($request->getStatusCode(), 200);
+
+    }
+
+
+    /** @test */
+    public function test_run()
+    {
+        $this->Register_teacher();
+        $this->addSchool_as_admin();
+        $this->addClass_as_admin();
+
+    }
+
 }
+/*
+ *
+ *
+
+
+
+
+    public function showClasses_as_teacher()
+    {
+        parent::setUp();
+        $this->acting_as('teacher');
+        //$request = Request::create('/api/showClasses', 'GET');
+
+        $request = $this->get('/api/showClasses');
+        //dd($request);
+
+        $this->assertEquals($request->getStatusCode(), 200);
+    }
+ */

@@ -17,6 +17,7 @@ class teacherController extends Controller
 
     public function show_classes()
     {
+        //dd(Auth::id());
         return classes::where('users_id', Auth::id())->get();
     }
 
